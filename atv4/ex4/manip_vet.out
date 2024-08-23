@@ -1,0 +1,4 @@
+Vetor inicial: 1 1 1 1 1 
+Vetor após multiplicação por 3: 3 3 3 3 3 
+Vetor após definir o valor no índice 2 como 10: 3 3 10 3 3 
+Vetor após remoção do valor no índice 1: 3 0 10 3 3 
