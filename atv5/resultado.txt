@@ -1,0 +1,13 @@
+Entrada 1 -> Peso ocupado: 10 Kg, Valor alcançado: 266 dinheiros, Tempo de execução: 2 microssegundos
+Entrada 2 -> Peso ocupado: 2 Kg, Valor alcançado: 156 dinheiros, Tempo de execução: 0 microssegundos
+Entrada 3 -> Peso ocupado: 100 Kg, Valor alcançado: 236 dinheiros, Tempo de execução: 2 microssegundos
+Entrada 4 -> Peso ocupado: 10 Kg, Valor alcançado: 55 dinheiros, Tempo de execução: 0 microssegundos
+
+O algoritmo de busca exaustiva para o problema da mochila tem várias limitações importantes. Principalmente, sua complexidade 
+é exponencial, o que significa que o tempo de execução aumenta muito rapidamente com o número de itens. Para um número pequeno
+ de itens, o tempo é muito rápido, mas para muitos itens, o tempo de execução pode se tornar muito grande e inviável.
+
+Além disso, o algoritmo pode usar muita memória devido à profundidade das chamadas recursivas, o que pode causar problemas,
+ como estouro de pilha, em casos extremos. Embora seja eficaz para problemas pequenos, ele não funciona bem para problemas 
+ maiores devido ao aumento exponencial no número de combinações possíveis. Para problemas maiores, é melhor usar métodos 
+ mais eficientes, como Programação Dinâmica ou algoritmos aproximados, para encontrar soluções de forma prática.
