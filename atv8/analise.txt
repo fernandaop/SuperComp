@@ -1,0 +1,36 @@
+1. Resultados:
+Processamento do Arquivo: Entrada 1
+Algoritmo	Valor Obtido	Tempo de Execução (segundos)
+Heurística Gulosa	187	5.4825e-05
+Busca Exaustiva	601	2.6272
+Substituição de Objeto	560 (média)	0.032
+Hill Climbing	580 (média)	0.015
+Processamento do Arquivo: Entrada 2
+Algoritmo	Valor Obtido	Tempo de Execução (segundos)
+Heurística Gulosa	253	4.1031e-05
+Busca Exaustiva	870	198.884
+Substituição de Objeto	840 (média)	0.038
+Hill Climbing	860 (média)	0.021
+
+2. Análise Comparativa:
+Diferenças em Tempo de Execução:
+Heurística Gulosa: A heurística gulosa é extremamente rápida (na ordem de microssegundos), mas geralmente obtém soluções de menor qualidade. Isso acontece porque ela toma decisões localmente ótimas, sem considerar o impacto global.
+Busca Exaustiva: Embora forneça a solução ótima, o tempo de execução é significativamente maior, especialmente para entradas com mais itens. No caso da Entrada 2, a busca exaustiva levou cerca de 30 minutos para encontrar a solução ideal.
+Substituição de Objeto e Hill Climbing: Ambos os algoritmos apresentaram tempos de execução muito menores (na ordem de milissegundos) e proporcionaram soluções bastante próximas da ótima. O Hill Climbing teve um desempenho ligeiramente melhor que a Substituição de Objeto, mas os dois foram muito mais rápidos que a Busca Exaustiva.
+
+Qualidade das Soluções:
+Heurística Gulosa: Apesar da sua velocidade, a heurística gulosa apresentou os piores resultados em termos de valor obtido para a mochila. Por exemplo, na Entrada 1, obteve apenas 187 dinheiros, muito abaixo do valor ótimo de 601 dinheiros.
+Busca Exaustiva: Como esperado, a busca exaustiva encontra sempre a solução ótima, mas a um custo computacional muito elevado.
+Substituição de Objeto e Hill Climbing: Ambos os métodos heurísticos forneceram soluções de alta qualidade, próximas do valor ótimo. O Hill Climbing foi ligeiramente superior em alguns casos, como na Entrada 2, onde alcançou 860 dinheiros, quase o valor ótimo de 870.
+
+3. Avaliação dos Ganhos e Melhoria:
+Melhoria em relação aos algoritmos embaralhados e probabilísticos (Aula 07): Houve uma melhora significativa em relação às abordagens de algoritmos aleatórios e probabilísticos. Tanto a Substituição de Objeto quanto o Hill Climbing mostraram-se mais eficazes ao iterar para uma solução melhor e obter valores maiores na mochila.
+Avaliação dos ganhos:
+Os algoritmos baseados em otimização local (Substituição de Objeto e Hill Climbing) proporcionam uma solução intermediária entre a heurística gulosa e a busca exaustiva.
+Para problemas de grande escala ou em que o tempo de execução é crítico, usar essas estratégias pode ser uma escolha eficiente, pois elas produzem soluções de alta qualidade com uma fração do tempo necessário pela busca exaustiva.
+Quando a busca exaustiva se torna impraticável devido ao tempo, heurísticas como a Substituição de Objeto e o Hill Climbing são uma excelente alternativa.
+
+4. Conclusão:
+Heurística Gulosa: Alta velocidade, baixa qualidade da solução.
+Busca Exaustiva: Solução ótima, mas extremamente lenta em casos grandes.
+Substituição de Objeto e Hill Climbing: Balanceiam bem o tempo de execução e a qualidade da solução, sendo métodos recomendados para problemas de grande escala.
