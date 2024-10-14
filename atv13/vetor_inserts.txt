@@ -1,0 +1,2 @@
+Tempo de execução com critical: 0.00118922 segundos
+Tempo de execução com pré-alocação: 0.000118824 segundos
