@@ -1,0 +1,8 @@
+Processo 1 respondeu ao processo 0.
+Processo 0 recebeu de 1: Mensagem do processo 
+Processo 0 recebeu de 2: Mensagem do processo 
+Processo 0 recebeu de 3: Mensagem do processo 
+Processo 0 recebeu de 4: Mensagem do processo 
+Processo 2 respondeu ao processo 0.
+Processo 3 respondeu ao processo 0.
+Processo 4 respondeu ao processo 0.
