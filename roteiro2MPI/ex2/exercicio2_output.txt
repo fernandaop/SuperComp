@@ -1,0 +1,4 @@
+Processo 0 completou 5000 iterações.
+Processo 0 completou 5000 iterações.
+Processo 0 completou 5000 iterações.
+Processo 0 completou 5000 iterações.

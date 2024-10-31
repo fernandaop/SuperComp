@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <numeric>
+#include <cmath>
 
 int main(int argc, char** argv) {
     MPI_Init(&argc, &argv);
@@ -23,17 +24,22 @@ int main(int argc, char** argv) {
     MPI_Scatter(array.data(), array_size / world_size, MPI_INT, local_array.data(),
                 array_size / world_size, MPI_INT, 0, MPI_COMM_WORLD);
 
-    double local_sum = std::accumulate(local_array.begin(), local_array.end(), 0.0);
-    double local_mean = local_sum / local_array.size();
+    double local_mean = std::accumulate(local_array.begin(), local_array.end(), 0.0) / local_array.size();
+    double local_variance = 0.0;
+    for (const auto& val : local_array) {
+        local_variance += (val - local_mean) * (val - local_mean);
+    }
+    local_variance /= local_array.size();
 
-    // Declare global_means only on the root process
-    std::vector<double> global_means(world_size); 
-
+    std::vector<double> global_means(world_size), global_variances(world_size);
     MPI_Gather(&local_mean, 1, MPI_DOUBLE, global_means.data(), 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    MPI_Gather(&local_variance, 1, MPI_DOUBLE, global_variances.data(), 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
     if (world_rank == 0) {
         double global_mean = std::accumulate(global_means.begin(), global_means.end(), 0.0) / world_size;
-        std::cout << "Global mean: " << global_mean << std::endl;
+        double global_variance = std::accumulate(global_variances.begin(), global_variances.end(), 0.0) / world_size;
+        double stddev = sqrt(global_variance);
+        std::cout << "Desvio padrão global: " << stddev << std::endl;
     }
 
     MPI_Finalize();

@@ -1,7 +1,7 @@
 #include <mpi.h>
 #include <iostream>
 #include <vector>
-#include <numeric>
+#include <algorithm>
 
 int main(int argc, char** argv) {
     MPI_Init(&argc, &argv);
@@ -14,26 +14,32 @@ int main(int argc, char** argv) {
     std::vector<int> array(array_size);
     std::vector<int> local_array(array_size / world_size);
 
+    int max_value;
+
     if (world_rank == 0) {
         for (int i = 0; i < array_size; i++) {
             array[i] = rand() % 100;
         }
+        max_value = *std::max_element(array.begin(), array.end());
     }
 
+    MPI_Bcast(&max_value, 1, MPI_INT, 0, MPI_COMM_WORLD);
     MPI_Scatter(array.data(), array_size / world_size, MPI_INT, local_array.data(),
                 array_size / world_size, MPI_INT, 0, MPI_COMM_WORLD);
 
-    double local_sum = std::accumulate(local_array.begin(), local_array.end(), 0.0);
-    double local_mean = local_sum / local_array.size();
+    for (int i = 0; i < local_array.size(); i++) {
+        local_array[i] = static_cast<double>(local_array[i]) / max_value;
+    }
 
-    // Declare global_means only on the root process
-    std::vector<double> global_means(world_size); 
-
-    MPI_Gather(&local_mean, 1, MPI_DOUBLE, global_means.data(), 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    MPI_Gather(local_array.data(), array_size / world_size, MPI_DOUBLE, array.data(),
+               array_size / world_size, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
     if (world_rank == 0) {
-        double global_mean = std::accumulate(global_means.begin(), global_means.end(), 0.0) / world_size;
-        std::cout << "Global mean: " << global_mean << std::endl;
+        std::cout << "Array normalizado: ";
+        for (const auto &val : array) {
+            std::cout << val << " ";
+        }
+        std::cout << std::endl;
     }
 
     MPI_Finalize();
