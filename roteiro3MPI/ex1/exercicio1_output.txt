@@ -1,0 +1,4 @@
+Tempo de execução com OpenMP: 0.001530 segundos
+Tempo de execução com OpenMP: 0.001620 segundos
+Tempo de execução com OpenMP: 0.001721 segundos
+Tempo de execução com OpenMP: 0.001614 segundos
